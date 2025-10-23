@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String       @id @default(uuid())
+  name                  String?
+  email                 String       @unique
+  password              String
+  isAdmin               Boolean      @default(false)
+  bgRemovalUsesThisMonth Int         @default(0)
+  lastBgRemovalReset    DateTime     @default(now())
+  plan                  String       @default("FREE") // Novo campo para o plano do usuário
+  textGenerationUsesThisMonth Int @default(0) // Novo campo para contagem de gerações de texto
+  lastTextGenerationReset DateTime @default(now()) // Novo campo para reset de gerações de texto
+  createdAt             DateTime     @default(now())
+  generations           Generation[]
+}
+
+model Generation {
+  id                String   @id @default(uuid())
+  title             String
+  description       String   @db.Text
+  tone              String?
+  images            String[] // Array de URLs das imagens
+  bgRemovedImageUrl String?  // URL da imagem com fundo removido
+  resultInstagramOp1   Json // Opção 1 para Instagram
+  resultInstagramOp2   Json // Opção 2 para Instagram
+  resultFacebookOp1    Json // Opção 1 para Facebook
+  resultFacebookOp2    Json // Opção 2 para Facebook
+  resultMarketplaceOp1 Json // Opção 1 para Marketplace
+  resultMarketplaceOp2 Json // Opção 2 para Marketplace
+  hashtags          Json // Mudamos para Json (para hashtags, String também funcionaria, mas Json é mais flexível)
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime @default(now())
+  
+  @@index([userId])
+  @@index([createdAt])
+}
+
