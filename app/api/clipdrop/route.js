@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { removeBackground } from "@/lib/clipdrop";
+import { removeBackground } from '../../../lib/clipdrop';
 
 export async function POST(req) {
   try {
