@@ -1,4 +1,5 @@
 // /app/api/history/route.js
+export const dynamic = "force-dynamic";
 import { NextResponse } from 'next/server'; // Usando import
 import prisma from '../../../lib/prisma'; // Usando import
 import { getUserFromRequest } from '../../../lib/auth'; // Usando import

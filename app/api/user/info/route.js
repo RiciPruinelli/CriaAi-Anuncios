@@ -1,4 +1,5 @@
 // /app/api/user/info/route.js
+export const dynamic = "force-dynamic";
 import { NextResponse } from 'next/server';
 import { getUserFromRequest } from '../../../../lib/auth'; // Usando caminho relativo correto
 import prisma from '../../../../lib/prisma'; // Usando caminho relativo correto
