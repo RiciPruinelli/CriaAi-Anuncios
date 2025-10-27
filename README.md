@@ -1,5 +1,3 @@
 Cria.Ai Anúncios - README
 
-Siga .env.example, npm install, npx prisma generate, npx prisma migrate dev --name init, npm run dev
-
-Deploy: push to GitHub and import in Vercel, set env vars, run npx prisma migrate deploy before first start.
+É um sistema para criacao de anuncios para plataformas, de modo a auxiliar e facilitar na criação de conteudo para a venda, o sistema também faz a remoção do fundo de fotos.
